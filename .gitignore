@@ -1,0 +1,14 @@
+# Maven
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# IntelliJ
+*.iml
+.idea/
+
+# SDKMAN
+.sdkmanrc
+
+# Mac
+.DS_Store
