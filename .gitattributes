@@ -1,0 +1,29 @@
+# Handle line endings automatically for files detected as text and leave all
+# files detected as binary untouched.
+* text=auto
+
+
+# These files are text and should be normalized
+# (Convert crlf => lf)
+*.html text
+*.java text
+*.md text
+*.properties text
+*.xml text
+
+
+# These files are binary and should be left untouched
+# (binary is a macro for -text -diff)
+*.class binary
+*.jar binary
+
+
+# Windows
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+
+# Unix/Linux
+*.sh text eol=lf
+bin/cibuild text eol=lf
+mvnw text eol=lf
