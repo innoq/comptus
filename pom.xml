@@ -6,6 +6,65 @@
   <artifactId>comptus</artifactId>
   <version>0.1.0-SNAPSHOT</version>
 
+  <name>comptus</name>
+  <description>Thymeleaf dialect for server side rendered components</description>
+  <url>https://github.com/innoq/comptus</url>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <organization>
+    <name>innoQ Deutschland GmbH</name>
+    <url>https://innoq.com</url>
+  </organization>
+
+  <inceptionYear>2023</inceptionYear>
+
+  <ciManagement>
+    <url>https://github.com/innoq/comptus/actions</url>
+    <system>GitHub Actions</system>
+  </ciManagement>
+
+  <issueManagement>
+    <url>https://github.com/innoq/comptus/issues</url>
+    <system>GitHub Issues</system>
+  </issueManagement>
+
+  <developers>
+    <developer>
+      <id>mvitz</id>
+      <name>Michael Vitz</name>
+      <email>michael.vitz at innoq dot com</email>
+      <url>https://innoq.com/en/staff/michael-vitz</url>
+      <organization>innoQ Deutschland GmbH</organization>
+      <organizationUrl>https://innoq.com</organizationUrl>
+      <timezone>Europe/Berlin</timezone>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:https://github.com/innoq/comptus</connection>
+    <developerConnection>scm:git:git@github.com:innoq/comptus.git</developerConnection>
+    <url>https://github.com/innoq/comptus</url>
+    <tag>head</tag>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
   <properties>
     <java.version>17</java.version>
     <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
