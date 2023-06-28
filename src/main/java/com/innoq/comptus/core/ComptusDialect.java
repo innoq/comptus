@@ -17,7 +17,7 @@ public class ComptusDialect extends AbstractProcessorDialect {
     private final String componentPackage;
 
     public ComptusDialect(String componentPackage) {
-        super(DIALECT_NAME, DIALECT_PREFIX, PROCESSOR_PRECEDENCE);
+        super(DIALECT_NAME, DIALECT_PREFIX, PROCESSOR_PRECEDENCE + 1);
         this.componentPackage = componentPackage;
     }
 

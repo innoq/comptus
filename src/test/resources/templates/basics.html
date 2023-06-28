@@ -2,3 +2,5 @@
 <co:badge type="danger">This is dangerous</co:badge>
 <co:badge>Badge in badge: <co:badge>inner badge</co:badge></co:badge>
 <co:badge>Badge with <span th:text="${obj.name}">Till</span></co:badge>
+<co:badge th:attr="type='danger'">Should be dangerous</co:badge>
+<co:badge th:type="'dan' + 'ger'">Should be dangerous, too</co:badge>

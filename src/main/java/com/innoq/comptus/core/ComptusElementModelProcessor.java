@@ -12,7 +12,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 import static java.util.Collections.emptyList;
-import static org.thymeleaf.standard.processor.StandardReplaceTagProcessor.PRECEDENCE;
 import static org.thymeleaf.templatemode.TemplateMode.HTML;
 
 public class ComptusElementModelProcessor extends AbstractElementModelProcessor {
@@ -21,7 +20,7 @@ public class ComptusElementModelProcessor extends AbstractElementModelProcessor 
     private final Class<? extends Component> componentClass;
 
     public ComptusElementModelProcessor(String dialectPrefix, String elementName, Class<? extends Component> componentClass) {
-        super(HTML, dialectPrefix, elementName, true, null, false, PRECEDENCE);
+        super(HTML, dialectPrefix, elementName, true, null, false, 1);
         this.elementName = elementName;
         this.componentClass = componentClass;
     }
@@ -105,21 +104,17 @@ public class ComptusElementModelProcessor extends AbstractElementModelProcessor 
         }
     }
 
-    Map<String, Object> extractAttributesFrom(ITemplateContext context, IModel componentInstanceModel) {
+    private Map<String, Object> extractAttributesFrom(ITemplateContext context, IModel componentInstanceModel) {
         final var attributes = new HashMap<String, Object>();
         Arrays.stream(((IProcessableElementTag) componentInstanceModel.get(0)).getAllAttributes())
                 .forEach(attribute -> {
                     final var attributeName = attribute.getAttributeDefinition().getAttributeName();
                     final var attributeValue = attribute.getValue();
 
-                    if ("co".equals(attributeName.getPrefix())) {
-                        if (attributeValue == null) {
-                            attributes.put(attributeName.getAttributeName(), attributeValue);
-                        } else {
-                            attributes.put(attributeName.getAttributeName(), getExpressionParser(context).parseExpression(context, attributeValue).execute(context));
-                        }
+                    if ("co".equals(attributeName.getPrefix()) && attributeValue != null) {
+                        attributes.put(attributeName.getAttributeName(), getExpressionParser(context).parseExpression(context, attributeValue).execute(context));
                     } else {
-                        attributes.put(attribute.getAttributeCompleteName(), attributeValue);
+                        attributes.put(attributeName.getAttributeName(), attributeValue);
                     }
                 });
         return attributes;

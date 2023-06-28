@@ -1,0 +1,4 @@
+<dl th:each="row: ${this.children}" class="row">
+    <dd th:text="${row.key}"></dd>
+    <dt th:text="${row.value}"></dt>
+</dl>

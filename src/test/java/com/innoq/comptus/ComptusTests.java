@@ -9,7 +9,10 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import java.io.IOException;
+import java.util.AbstractMap;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -21,10 +24,11 @@ class ComptusTests {
     ITemplateEngine engine = createEngine();
 
     @ParameterizedTest
-    @ValueSource(strings = {"basics", "attributes", "slots", "context"})
+    @ValueSource(strings = {"basics", "attributes", "slots", "context", "objects"})
     void test(String template) throws Exception {
         var context = new Context();
         context.setVariable("obj", new ContextObject("Michael"));
+        context.setVariable("list", List.of(new AbstractMap.SimpleEntry<>("foo", "bar"), new AbstractMap.SimpleEntry<>("boo", "baz")));
 
         var result = engine.process(template, context);
 
