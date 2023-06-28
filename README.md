@@ -93,7 +93,7 @@ But this could also be done by providing methods in your component's class:
 
 ```
 public String getClassNames() {
-    return "my-button %s %s".formatted("cta".equals(styling) ? "primary" : "default");
+    return "my-button %s".formatted("cta".equals(styling) ? "primary" : "default");
 }
 ```
 
@@ -123,11 +123,11 @@ MySpecialPOJO myData = attribute("my-data", MySpecialPOJO.class).orElse(null);
 
 ## Slots
 
-TBD (see src/test/resources/slots.html)
+TBD (see [src/test/resources/templates/slots.html](src/test/resources/templates/slots.html))
 
 ## Context
 
-TBD (see src/test/resources/context.html)
+TBD (see [src/test/resources/templates/context.html](src/test/resources/templates/context.html))
 
 
 ## License
