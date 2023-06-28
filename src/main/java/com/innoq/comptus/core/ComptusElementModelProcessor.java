@@ -20,7 +20,7 @@ public class ComptusElementModelProcessor extends AbstractElementModelProcessor 
     private final Class<? extends Component> componentClass;
 
     public ComptusElementModelProcessor(String dialectPrefix, String elementName, Class<? extends Component> componentClass) {
-        super(HTML, dialectPrefix, elementName, true, null, false, 1);
+        super(HTML, dialectPrefix, elementName, true, null, false, 100);
         this.elementName = elementName;
         this.componentClass = componentClass;
     }
@@ -32,7 +32,6 @@ public class ComptusElementModelProcessor extends AbstractElementModelProcessor 
         final var componentTemplateModel = createComponentTemplateModel(context, slotValues);
         final var component = createComponent(context, componentInstanceModel, slotValues.keySet(), structureHandler);
 
-        addRestAttributes(context, componentTemplateModel, component);
         structureHandler.setLocalVariable("this", component);
 
         componentInstanceModel.reset();
@@ -118,22 +117,6 @@ public class ComptusElementModelProcessor extends AbstractElementModelProcessor 
                     }
                 });
         return attributes;
-    }
-
-    private void addRestAttributes(ITemplateContext context, IModel componentTemplateModel, Component component) {
-        final var restAttributes = component.getRestAttributes();
-        if (restAttributes.isEmpty()) {
-            return;
-        }
-
-        final var modelFactory = context.getModelFactory();
-
-        var element = (IProcessableElementTag) componentTemplateModel.get(0);
-        for (var entry : restAttributes.entrySet()) {
-            element = modelFactory.setAttribute(element, entry.getKey(), entry.getValue() == null ? "" : entry.getValue().toString());
-        }
-
-        componentTemplateModel.replace(0, element);
     }
 
     private static IStandardExpressionParser getExpressionParser(ITemplateContext context) {

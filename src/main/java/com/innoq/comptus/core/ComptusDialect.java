@@ -3,7 +3,9 @@ package com.innoq.comptus.core;
 import org.reflections.Reflections;
 import org.thymeleaf.dialect.AbstractProcessorDialect;
 import org.thymeleaf.processor.IProcessor;
+import org.thymeleaf.templatemode.TemplateMode;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -23,12 +25,16 @@ public class ComptusDialect extends AbstractProcessorDialect {
 
     @Override
     public Set<IProcessor> getProcessors(String dialectPrefix) {
-        return findComponentClasses().stream()
+        final var processors = new HashSet<IProcessor>();
+        findComponentClasses().stream()
                 .map(componentClass -> {
                     final var tagName = tagNameFor(componentClass);
                     return new ComptusElementModelProcessor(DIALECT_PREFIX, tagName, componentClass);
                 })
-                .collect(Collectors.toSet());
+            .forEach(processors::add);
+        processors.add(new ComptusRestAttributesTagProcessor(dialectPrefix));
+
+        return processors;
     }
 
     private Set<Class<? extends Component>> findComponentClasses() {
