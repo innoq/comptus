@@ -1,7 +1,6 @@
 # Comptus
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-
 [![Open Issues](https://img.shields.io/github/issues/innoq/comptus.svg)](https://github.com/innoq/comptus/issues)
 [![Build Status](https://github.com/innoq/comptus/actions/workflows/main.yml/badge.svg)](https://github.com/innoq/comptus/actions/workflows/main.yml)
 
